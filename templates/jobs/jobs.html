@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <h1 class>Job Postings</h1>
+    <ul class="list-group">
+    {% for job in joblist %}
+        <li class="list-group-item">{{ job }}</li>
+    {% endfor %}
+    </ul>
+    <br>
+    total jobs : {{ joblist.count }}
+{% endblock %}

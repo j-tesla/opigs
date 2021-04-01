@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <h1>Notice Board</h1>
+    <ul class="list-group">
+        {% for announcement in announcements %}
+            <li class="list-group-item">
+                <details>
+                    <summary>{{ announcement }}</summary>
+                    <p class="text">
+                        {{ announcement.content }}
+                    </p>
+                </details>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>
+        total announcements: {{ announcements.count }}
+    </p>
+{% endblock %}
