@@ -10,11 +10,15 @@
                     <p class="text">
                         {{ announcement.content }}
                     </p>
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete_announcement' announcement.id %}">Delete</a>
+                    <a class="btn btn-sm btn-warning" href="{% url 'update_announcement' announcement.id %}">Update</a>
                 </details>
             </li>
         {% endfor %}
     </ul>
-    <p>
-        total announcements: {{ announcements.count }}
-    </p>
+    {% if user.user_type == 'ADMIN' %}
+        <div class="form-group">
+        <a class="btn btn-info" href="{%  url 'post_announcement' %}">New</a>
+        </div>
+    {% endif %}
 {% endblock %}
