@@ -5,7 +5,7 @@ from django.db import models
 
 class Announcement(models.Model):
     date_posted = models.DateTimeField(auto_now=True)
-    content = models.CharField(max_length=500)
+    content = models.TextField()
 
     def __str__(self):
         text = self.content[:60]
