@@ -26,7 +26,7 @@ def post_announcement(request):
             form.save()
             return redirect('announcements')
     context = {'form': form}
-    return render(request, 'noticeboard/announcement_form.html', context=context)
+    return render(request, 'form.html', context=context)
 
 
 @login_required
@@ -40,7 +40,7 @@ def update_announcement(request, pk):
             form.save()
             return redirect('announcements')
     context = {'form': form}
-    return render(request, 'noticeboard/announcement_form.html', context=context)
+    return render(request, 'form.html', context=context)
 
 
 @login_required
@@ -51,4 +51,4 @@ def delete_announcement(request, pk):
         announcement.delete()
         return redirect('announcements')
     context = {'item': announcement}
-    return render(request, 'noticeboard/delete.html', context=context)
+    return render(request, 'delete.html', context=context)

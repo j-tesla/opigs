@@ -1,11 +1,12 @@
 from django.db import models
+from accounts.models import Company
 
 
 # Create your models here.
 
 
 class JobPosting(models.Model):
-    # company todo
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     JOBTYPE = [('INTERNSHIP', 'internship'), ('PLACEMENT', 'placement')]
     title = models.CharField(max_length=100, null=False)
     job_type = models.CharField(max_length=30, choices=JOBTYPE, null=False)
