@@ -24,9 +24,11 @@ def post_job(request):
     form = JobPostingForm()
     if request.method == 'POST':
         form = JobPostingForm(request.POST)
-        form.company = Company.objects.get(id=request.user.id)
+        Company.objects.get(user__id=request.user.id)
         if form.is_valid():
-            form.save()
+            job = form.save(commit=False)
+            job.company = Company.objects.get(user__id=request.user.id)
+            job.save()
             return redirect('jobs')
     context = {'form': form}
     return render(request, 'form.html', context=context)

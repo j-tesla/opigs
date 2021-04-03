@@ -5,4 +5,4 @@ from .models import *
 class JobPostingForm(ModelForm):
     class Meta:
         model = JobPosting
-        fields = '__all__'
+        exclude = ['company', 'applicants']

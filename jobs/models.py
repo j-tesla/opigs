@@ -6,8 +6,8 @@ from accounts.models import Company, Student
 
 
 class JobPosting(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     JOBTYPE = [('INTERNSHIP', 'internship'), ('PLACEMENT', 'placement')]
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, null=False)
     job_type = models.CharField(max_length=30, choices=JOBTYPE, null=False)
     date_posted = models.DateTimeField(auto_now=True)

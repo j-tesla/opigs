@@ -53,12 +53,26 @@
 
 
     {% if user.user_type == 'STUDENT' %}
-        <form action="{% url 'apply_to_job' job.id %}" method="POST">
-        {% csrf_token %}
-            <div class="mb3">
-                <input type="submit" value="Apply" class="btn btn-success">
-            </div>
-        </form>
+        <div class="container">
+            <form action="{% url 'apply_to_job' job.id %}" method="POST">
+                {% csrf_token %}
+                <div class="mb3">
+                    <input type="submit" value="Apply" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    {% elif job.company.user.id == user.id %}
+        <div class="container">
+            <form action="{% url 'update_job' job.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" class="btn-sm btn-primary" value="Update">
+            </form>
+            <button class="btn-sm btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal{{ job.id }}">Delete
+            </button>
+        </div>
+        {% include "jobs/modal.html" %}
     {% endif %}
+
 
 {% endblock %}
