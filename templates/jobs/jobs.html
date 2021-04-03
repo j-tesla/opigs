@@ -3,21 +3,15 @@
 {% block content %}
     <h1 class>Job Postings</h1>
     <ul class="list-group">
-    {% for job in joblist %}
-        <li class="list-group-item">
-            <div>
-                {{job}}
-                {% if job.company.user.id == user.id %}
-                <form action="{% url 'update_job' job.id %}" method="post">
-                    {% csrf_token %}
-                    <input type="submit" class="btn-sm btn-primary" value="Update">
-                </form>
-                <button class="btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{job.id}}">Delete</button>
-                {% include "jobs/modal.html" %}
-                {% endif %}
-            </div>
-        </li>
-    {% endfor %}
+        {% for job in joblist %}
+            <li class="list-group-item">
+                <div>
+                    {{ job }}
+{#                    posted by <a href="{% url 'profile' job.company.id %}">{{ job.company }}</a>#}
+                    <a href="{% url 'job' job.id %}">Visit Job Posting's Page</a>
+                </div>
+            </li>
+        {% endfor %}
     </ul>
     <br>
     total jobs : {{ joblist.count }}

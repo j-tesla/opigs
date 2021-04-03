@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <h1>{{ job }}</h1>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                Employment type
+            </div>
+            <div class="col">
+                {{ job.job_type }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Industry
+            </div>
+            <div class="col">
+                {{ job.industry }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Date Posted
+            </div>
+            <div class="col">
+                {{ job.date_posted }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                Deadline
+            </div>
+            <div class="col">
+                {{ job.deadline_date }}
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <p class="h3">Job Description</p>
+        <p>
+            {{ job.description }}
+        </p>
+    </div>
+    <div class="container">
+        <p class="h3">Skills Required</p>
+        <p>
+            {{ job.skills }}
+        </p>
+    </div>
+
+
+    {% if user.user_type == 'STUDENT' %}
+        <form action="{% url 'apply_to_job' job.id %}" method="POST">
+        {% csrf_token %}
+            <div class="mb3">
+                <input type="submit" value="Apply" class="btn btn-success">
+            </div>
+        </form>
+    {% endif %}
+
+{% endblock %}
