@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div>
+        <ul class="list-group">
+            {% for notification in notifications %}
+                <li class="list-group-item"><a class="text" href="{{ notification.url }}">{{ notification.content }}</a></li>
+            {% empty %}
+                <p class="text">No notifications available, check back later!</p>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
