@@ -6,6 +6,7 @@ from django.http import HttpResponse
 
 from .forms import StudentSignUpForm, CompanySignUpForm, AlumniSignUpForm
 from .models import User
+from notifications.models import Notification
 
 
 class StudentSignUpView(CreateView):
@@ -35,6 +36,9 @@ class CompanySignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
+        admin = User.objects.filter(user_type="ADMIN")[0]
+        notification = Notification(content='New Company: ' + user.name, url=f'/profile/{user.id}')
+        notification.users.add(admin)
         return redirect('companies:dashboard')
 
 
