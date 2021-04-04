@@ -22,6 +22,7 @@ class User(AbstractUser):
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    email = models.EmailField(null=False)
     date_of_birth = models.DateField()
     phone = models.CharField(max_length=15)
     resume = models.FileField(upload_to='documents/')
@@ -57,6 +58,7 @@ class Student(models.Model):
 
 class Company(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    email = models.EmailField(null=False)
     work_environment = models.TextField(blank=True)
     recruitment_policy = models.TextField()
     verified = models.BooleanField(default=False)
@@ -69,6 +71,7 @@ class Company(models.Model):
 class Alumni(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     companies_worked_in = models.ManyToManyField(Company)
+    email = models.EmailField(null=False)
 
     def __str__(self):
         return self.user.name
