@@ -30,7 +30,7 @@ def company_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, log
 def verified_company_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url='login'):
     def f(u):
         if u.is_active and u.user_type == 'COMPANY':
-            company = Company.objects.get(id=u.id)
+            company = Company.objects.get(user__id=u.id)
             return company.verified
         return False
 

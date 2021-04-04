@@ -2,6 +2,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.generic import CreateView
+from django.http import HttpResponse
 
 from .forms import StudentSignUpForm, CompanySignUpForm, AlumniSignUpForm
 from .models import User
@@ -49,9 +50,9 @@ class AlumniSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('alumni:dashboard')
+        return redirect('profile')
 
 
 @login_required
 def profile_redirect(request):
-    pass  # todo profiles
+    return HttpResponse(200)  # todo profiles
