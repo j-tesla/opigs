@@ -58,14 +58,24 @@ class AlumniSignUpView(CreateView):
         return redirect('profile')
 
 
-@login_required
-@student_required
-def student_profile(request):
-    return render(request, 'accounts/student_profile.html')
+def profile_redirect(request, pk=None):
+    if pk is None:
+        pk = request.user.id
+        edit = True
+    else:
+        edit = False
+    user = User.objects.get(id=pk)
+    context = {"user": user, "edit": edit}
+    if user.user_type == "STUDENT":
+        return render(request, "accounts/student_profile.html", context=context)
+    elif user.user_type == "COMPANY":
+        return render(request, "accounts/company_profile.html", context=context)
+    elif user.user_type == "ALUMNI":
+        return render(request, "accounts/alumni_profile.html", context=context)
+
+    return HttpResponse(200)
 
 
 @login_required
-def profile_redirect(request):
-    if request.user.user_type == 'STUDENT':
-        return redirect('student_profile')
-    return HttpResponse(200)  # todo profiles
+def profile_update(request):
+    User.objects.filter(id=request.user.id).update(**request.POST)
