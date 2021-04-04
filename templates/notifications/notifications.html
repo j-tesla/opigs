@@ -4,10 +4,29 @@
     <div>
         <ul class="list-group">
             {% for notification in notifications %}
-                <li class="list-group-item"><a class="text" href="{{ notification.url }}">{{ notification.content }}</a></li>
+                <li class="list-group-item">
+                    <form action="{% url 'delete_notification' notification.id %}" method="post">
+                        {% csrf_token %}
+                    <a class="text" href="{{ notification.url }}">
+                        {{ notification.content }}
+                    </a>
+                    <!-- <input type="submit" value="delete"> -->
+                            <button class="btn btn-link" type="submit">
+                                <i class="fas fa-times"></i>
+                            </button>
+                    </form>
+                </li>
             {% empty %}
                 <p class="text">No notifications available, check back later!</p>
             {% endfor %}
+            {% if notifications|length > 0 %}
+            <form action="{% url 'clear_notifications' %}" method="post">
+                {% csrf_token %}
+                <div><button type="submit">
+                    Clear all Notifications
+                </button></div>
+            </form>
+            {% endif %}
         </ul>
     </div>
 {% endblock %}

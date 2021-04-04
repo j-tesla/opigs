@@ -24,6 +24,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     date_of_birth = models.DateField()
     phone = models.CharField(max_length=15)
+    resume = models.FileField(upload_to='documents/')
 
     DEPARTMENTS = (
         (1, 'Aerospace Engineering'),

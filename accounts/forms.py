@@ -10,6 +10,7 @@ class StudentSignUpForm(UserCreationForm):
     date_of_birth = forms.DateField(required=True)
     phone = forms.CharField(max_length=15)
     department = forms.ChoiceField(choices=Student.DEPARTMENTS)
+    resume = forms.FileField()
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -21,8 +22,10 @@ class StudentSignUpForm(UserCreationForm):
         user.user_type = 'STUDENT'
         user.save()
         Student.objects.create(user=user, date_of_birth=self.cleaned_data.get('date_of_birth'),
-                               phone=self.cleaned_data.get('phone'),
-                               department=self.cleaned_data.get('department'))
+            phone=self.cleaned_data.get('phone'),
+            department=self.cleaned_data.get('department'),
+            resume=self.cleaned_data.get('resume')
+        )
         return user
 
 

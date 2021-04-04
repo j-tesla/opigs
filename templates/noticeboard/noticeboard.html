@@ -10,9 +10,11 @@
                     <p class="text">
                         {{ announcement.content }}
                     </p>
+                    {% if user.user_type == 'ADMIN' %}
                     <a class="btn btn-sm btn-warning" href="{% url 'update_announcement' announcement.id %}">Update</a>
                     <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
                     {% include "noticeboard/modal.html" %}
+                    {% endif %}
                 </details>
             </li>
         {% endfor %}
