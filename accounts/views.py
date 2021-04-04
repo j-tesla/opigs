@@ -1,6 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import CreateView
 from django.http import HttpResponse
 
@@ -58,5 +58,21 @@ class AlumniSignUpView(CreateView):
 
 
 @login_required
-def profile_redirect(request):
-    return HttpResponse(200)  # todo profiles
+def profile_redirect(request, pk):
+    user = User.objects.get(id=pk)
+    edit = False
+    if request.user.id == pk:
+        edit = True
+    context = {"user": user, "edit": edit}
+    if user.user_type == "STUDENT":
+        return render(request, "profiles/student.html", context=user)
+    elif user.user_type == "COMPANY":
+        return render(request, "profiles/company.html", context=user)
+    elif user.user_type == "ALUMNI":
+        return render(request, "profiles/alumni.html", context=user)
+
+    return HttpResponse(200)
+
+@login_required
+def profile_update(request):
+    User.objects.filter(id = request.user.id).update(**request.POST)
