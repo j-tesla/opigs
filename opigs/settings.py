@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'accounts',
     'jobs',
     'noticeboard',
@@ -120,6 +121,12 @@ AUTH_USER_MODEL = 'accounts.User'
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = BASE_DIR / 'static'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static_files'
+]
+
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = Path(BASE_DIR)/Path('media')
+MEDIA_ROOT = Path(BASE_DIR) / Path('media')

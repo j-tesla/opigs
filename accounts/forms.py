@@ -22,10 +22,10 @@ class StudentSignUpForm(UserCreationForm):
         user.user_type = 'STUDENT'
         user.save()
         Student.objects.create(user=user, date_of_birth=self.cleaned_data.get('date_of_birth'),
-            phone=self.cleaned_data.get('phone'),
-            department=self.cleaned_data.get('department'),
-            resume=self.cleaned_data.get('resume')
-        )
+                               phone=self.cleaned_data.get('phone'),
+                               department=self.cleaned_data.get('department'),
+                               resume=self.cleaned_data.get('resume')
+                               )
         return user
 
 

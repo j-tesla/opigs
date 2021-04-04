@@ -1,12 +1,13 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import CreateView
 from django.http import HttpResponse
 
 from .forms import StudentSignUpForm, CompanySignUpForm, AlumniSignUpForm
 from .models import User
 from notifications.models import Notification
+from .decorators import student_required
 
 
 class StudentSignUpView(CreateView):
@@ -58,5 +59,13 @@ class AlumniSignUpView(CreateView):
 
 
 @login_required
+@student_required
+def student_profile(request):
+    return render(request, 'accounts/student_profile.html')
+
+
+@login_required
 def profile_redirect(request):
+    if request.user.user_type == 'STUDENT':
+        return redirect('student_profile')
     return HttpResponse(200)  # todo profiles
