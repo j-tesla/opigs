@@ -27,9 +27,26 @@ class Student(models.Model):
     resume = models.FileField(upload_to='documents/')
 
     DEPARTMENTS = (
-        (1, 'Computer Science and Engineering'),
-        (2, 'Electrical Engineering'),
-        (3, 'Electronics and Electrical Communication Engineering')
+        (1, 'Aerospace Engineering'),
+        (2, 'Agricultural and Food Engineering'),
+        (3, 'Architecture and Regional Planning'),
+        (4, 'Bio Science'),
+        (5, 'Biotechnology'),
+        (6, 'Chemical Engineering'),
+        (7, 'Chemistry'),
+        (8, 'Civil Engineering'),
+        (9, 'Computer Science and Engineering'),
+        (10, 'Electrical Engineering'),
+        (11, 'Electronics and Electrical Communication Engg.'),
+        (12, 'Geology and Geophysics'),
+        (13, 'Humanities and Social Sciences'),
+        (14, 'Industrial and Systems Engineering'),
+        (15, 'Mathematics'),
+        (16, 'Mechanical Engineering'),
+        (17, 'Metallurgical and Materials Engineering'),
+        (18, 'Mining Engineering'),
+        (19, 'Ocean Engg and Naval Architecture'),
+        (20, 'Physics'),
     )
 
     department = models.CharField(max_length=200, choices=DEPARTMENTS)
