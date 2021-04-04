@@ -2,7 +2,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.views.generic import CreateView
-from django.http import HttpResponse
+from django.http import HttpResponseNotFound
 
 from .forms import StudentSignUpForm, CompanySignUpForm, AlumniSignUpForm
 from .models import User
@@ -58,10 +58,14 @@ class AlumniSignUpView(CreateView):
         return redirect('profile')
 
 
-def profile_redirect(request, pk=None):
+@login_required
+def profile(request, pk=None):
     if pk is None:
         pk = request.user.id
         edit = True
+        if request.method == 'POST':
+            user = User.objects.get(id=request.user.id).update(**request.POST)
+            user.save()
     else:
         edit = False
     user = User.objects.get(id=pk)
@@ -72,10 +76,5 @@ def profile_redirect(request, pk=None):
         return render(request, "accounts/company_profile.html", context=context)
     elif user.user_type == "ALUMNI":
         return render(request, "accounts/alumni_profile.html", context=context)
-
-    return HttpResponse(200)
-
-
-@login_required
-def profile_update(request):
-    User.objects.filter(id=request.user.id).update(**request.POST)
+    else:
+        return HttpResponseNotFound()

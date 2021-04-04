@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.db import transaction
 
 from .models import User, Student, Company, Admin, Alumni
@@ -70,3 +70,20 @@ class AlumniSignUpForm(UserCreationForm):
         alumni = Alumni.objects.create(user=user)
         alumni.companies_worked_in.add(*self.cleaned_data.get('companies'))
         return user
+
+
+class UserLoginForm(AuthenticationForm):
+    def init(self, args, **kwargs):
+        super(UserLoginForm, self).init(args, **kwargs)
+
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control form-control-user',
+               'placeholder': 'Enter username...',
+               'id': 'inputUsername', }))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter password...',
+            'id': 'inputPassword',
+        }
+    ))
