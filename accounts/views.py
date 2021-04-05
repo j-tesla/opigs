@@ -67,7 +67,7 @@ def profile(request, pk=None):
             if pk != request.user.id and request.user.user_type:
                 user = User.objects.get(id=pk)
                 user.company.verified = request.POST['verified']
-                user.save()
+                user.company.save()
                 return redirect(request, 'profile', pk)
             user = User.objects.get(id=pk)
             user.name = request.POST['name']
