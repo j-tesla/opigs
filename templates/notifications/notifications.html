@@ -27,7 +27,7 @@
             {% if notifications|length > 0 %}
               <form action="{% url 'clear_notifications' %}" method="post">
                 {% csrf_token %}
-                <div>
+                <div class='mb-3'>
                   <button class="btn btn-sm btn-danger" type="submit">
                     Clear
                   </button>
