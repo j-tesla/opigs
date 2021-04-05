@@ -66,7 +66,7 @@ def profile(request, pk=None):
             if User.objects.filter(username=request.POST['username']).exists():
                 user = User.objects.get(username=request.POST['username'])
                 if user.id != request.user.id:
-                    pass        # todo check for existing username or maybe we should not update username?
+                    pass        # fixme check for existing username or maybe we should not update username?
             user = User.objects.get(id=request.user.id)
             user.name = request.POST['name']
             user.username = request.POST['username']
