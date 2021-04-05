@@ -29,8 +29,13 @@ def post_job(request):
             job = form.save(commit=False)
             job.company = Company.objects.get(user__id=request.user.id)
             job.save()
+            notification = Notification(
+                content=f"New Job Posting: {job.title} at {job.company.name}",
+                url=f"/jobs/{job.id}"
+                )
             return redirect('jobs')
-    context = {'form': form}
+    context = {'form': form }
+
     return render(request, 'form.html', context=context)
 
 
