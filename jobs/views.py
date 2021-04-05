@@ -85,7 +85,7 @@ def apply_to_job(request, pk):
         job.applicants.add(student)
         notification = Notification(content='New Applicant: ' + student.user.name, url=f'/profile/{request.user.id}')
         notification.save()
-        notification.users.add(job.company)
+        notification.users.add(job.company.user)
         notification.save()
 
     return redirect('job', pk)
