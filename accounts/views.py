@@ -5,9 +5,8 @@ from django.views.generic import CreateView
 from django.http import HttpResponseNotFound
 
 from .forms import StudentSignUpForm, CompanySignUpForm, AlumniSignUpForm
-from .models import User
+from .models import *
 from notifications.models import Notification
-from .decorators import student_required
 
 
 class StudentSignUpView(CreateView):
@@ -64,8 +63,25 @@ def profile(request, pk=None):
         pk = request.user.id
         edit = True
         if request.method == 'POST':
-            user = User.objects.get(id=request.user.id).update(**request.POST)
+            if User.objects.filter(username=request.POST['username']).exists():
+                user = User.objects.get(username=request.POST['username'])
+                if user.id != request.user.id:
+                    pass        # todo check for existing username or maybe we should not update username?
+            user = User.objects.get(id=request.user.id)
+            user.name = request.POST['name']
+            user.username = request.POST['username']
+            user.validate_unique()
             user.save()
+            if user.user_type == 'STUDENT':
+                student = Student.objects.get(user=user.id)
+                student.email = request.POST['email']
+                student.department = request.POST['department']
+                student.phone = request.POST['phone']
+                student.email = request.POST['email']
+                if 'resume' in request.POST:
+                    student.resume = request.POST['resume']
+
+                student.save()
     else:
         edit = False
     user = User.objects.get(id=pk)
