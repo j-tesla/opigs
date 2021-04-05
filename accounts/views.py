@@ -94,3 +94,8 @@ def profile(request, pk=None):
         return render(request, "accounts/alumni_profile.html", context=context)
     else:
         return HttpResponseNotFound()
+
+
+def signup(request):
+    context = {}
+    return render(request, 'accounts/signup_home.html', context=context)
