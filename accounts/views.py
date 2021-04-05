@@ -101,3 +101,8 @@ def profile(request, pk=None):
 def signup(request):
     context = {}
     return render(request, 'accounts/signup_home.html', context=context)
+
+
+def home(request):
+    context = {}
+    return render(request, 'home.html', context=context)

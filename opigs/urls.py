@@ -20,7 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('jobs/', include('jobs.urls')),
     path('announcements/', include('noticeboard.urls')),
-    path('accounts/', include('accounts.urls')),
     path('notifications/', include('notifications.urls')),
-    path('feedbacks/', include('feedback.urls'))
+    path('feedbacks/', include('feedback.urls')),
+    path('', include('accounts.urls')),
+    path('notifications/', include('notifications.urls'))
 ]

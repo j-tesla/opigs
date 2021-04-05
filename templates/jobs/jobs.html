@@ -1,18 +1,64 @@
-{% extends "main.html" %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1 class>Job Postings</h1>
-    <ul class="list-group">
-        {% for job in joblist %}
-            <li class="list-group-item">
-                <div>
-                    {{ job }}
-{#                    posted by <a href="{% url 'profile' job.company.id %}">{{ job.company }}</a>#}
-                    <a href="{% url 'job' job.id %}">Visit Job Posting's Page</a>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
-    <br>
-    total jobs : {{ joblist.count }}
+  <div id="content">
+    <div class="container-fluid">
+      <h3 class="text-dark mb-4" style="margin-top: 10px;">Job Postings</h3>
+      <div class="card shadow">
+        <div class="card-header py-3">
+          <p class="text-primary m-0 fw-bold">Active</p>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+              <thead>
+              <tr>
+                <th>Title</th>
+                <th>Posted by</th>
+                <th>Posted on</th>
+                <th>Application Deadline</th>
+                <th>Placement/Internship</th>
+                <th>Posting's page</th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for job in joblist %}
+                <tr>
+                <td>{{ job.title }}</td>
+                <td>{{ job.company }}</td>
+                <td>{{ job.date_posted }}</td>
+                <td>{{ job.deadline }}</td>
+                <td>{{ job.job_type }}</td>
+                  <td><a href="{% url 'job' job.id %}" class="btn btn-secondary btn-circle ms-1"><i class="fas fa-arrow-right"></i> </a></td>
+                </tr>
+              {% empty %}
+                <p> No postings available</p>
+              {% endfor %}
+              <tr>
+                <td>Airi
+                  Satou
+                </td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>33</td>
+                <td>2008/11/28</td>
+              </tr>
+              <tr></tr>
+              <tr></tr>
+              <tr>
+                <td>Software Engineer</td>
+                <td>London</td>
+              </tr>
+
+              </tbody>
+              <tfoot>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
