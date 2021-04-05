@@ -101,7 +101,7 @@ def profile(request, pk=None):
                 user = User.objects.get(id=pk)
                 user.company.verified = True
                 user.company.save()
-                return redirect(request, 'profile', pk)
+                return redirect('profile', pk)
     user = User.objects.get(id=pk)
     context = {"user": user, "edit": edit, "viewer": request.user}
     if user.user_type == "STUDENT":

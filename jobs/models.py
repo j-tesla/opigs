@@ -11,7 +11,7 @@ class JobPosting(models.Model):
     title = models.CharField(max_length=100, null=False)
     job_type = models.CharField(max_length=30, choices=JOBTYPE, null=False)
     date_posted = models.DateTimeField(auto_now=True)
-    deadline_date = models.DateTimeField(null=False)
+    deadline_date = models.DateField(null=False)
     skills = models.TextField(null=False)
     description = models.TextField(null=True)
     industry = models.CharField(max_length=100, null=False)
