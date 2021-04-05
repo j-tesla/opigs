@@ -1,11 +1,12 @@
-{% extends "main.html" %}
+{% extends "base.html" %}
 
 {% block content %}
   <table>
     <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form }}
-      <input type="submit" name="Submit">
+      <input class="btn btn-sm btn-success" type="submit" name="Submit">
+      {{ form.errors }}
     </form>
   </table>
 {% endblock %}
