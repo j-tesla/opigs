@@ -91,7 +91,7 @@ def profile(request, pk=None):
             if user.user_type == "ALUMNI":
                 alumni = Alumni.objects.get(user=user.id)
                 alumni.email = request.POST["email"]
-                alumni.companies_worked_in = request.POST["companies_worked_in"]
+                # alumni.companies_worked_in = request.POST["companies_worked_in"]
 
     else:
         edit = False
