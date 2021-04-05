@@ -30,7 +30,7 @@
                 <td>{{ job.date_posted }}</td>
                 <td>{{ job.deadline }}</td>
                 <td>{{ job.job_type }}</td>
-                  <td><a href="{% url 'job' job.id %}" class="btn btn-secondary btn-circle ms-1"><i class="fas fa-arrow-right"></i> </a></td>
+                <td><a href="{% url 'job' job.id %}" class="btn btn-secondary btn-circle ms-1"><i class="fas fa-arrow-right"></i> </a></td>
                 </tr>
               {% empty %}
               
@@ -38,11 +38,18 @@
               
 
               </tbody>
-              <tfoot>
-              </tfoot>
+            
+
             </table>
+
           </div>
+          
         </div>
+      </div>
+      <div>
+        {% if user.user_type == "COMPANY"%}
+        <a href="{% url 'post_job'%}" class="btn btn-sm btn-sucess">Create Job</a>
+        {%endif%}
       </div>
     </div>
   </div>
