@@ -5,7 +5,9 @@
     <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form }}
-      <input class="btn btn-sm btn-success" type="submit" name="Submit">
+      <div class="mb-3">
+        <input class="btn btn-sm btn-success" type="submit" name="Submit">
+      </div>
       {{ form.errors }}
     </form>
   </table>
