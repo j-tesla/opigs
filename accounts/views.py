@@ -109,6 +109,8 @@ def profile(request, pk=None):
         return render(request, "accounts/company_profile.html", context=context)
     elif user.user_type == "ALUMNI":
         return render(request, "accounts/alumni_profile.html", context=context)
+    elif user.user_type == 'ADMIN':
+        return render(request, 'accounts/companies.html', context=context)
     else:
         return HttpResponseNotFound()
 
@@ -121,3 +123,10 @@ def signup(request):
 def home(request):
     context = {}
     return render(request, 'home.html', context=context)
+
+
+def get_companies(request):
+    companies = Company.objects.get()
+    context = {'companies': companies}
+
+    return render(request, 'accounts/companies.html', context=context)
