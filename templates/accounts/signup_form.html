@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <table>
+<div class="container-fluid">
+  <div class="card shadow-lg o-hidden border-0 my-5" style="display: flex; align-items: center;">
     <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
-      {{ form }}
+     <table> {{ form }} </table> 
+
       <div class="mb-3">
+
         <input class="btn btn-sm btn-success" type="submit" name="Submit">
       </div>
       {{ form.errors }}
     </form>
-  </table>
+  </div>
+</div>
 {% endblock %}

@@ -236,7 +236,7 @@
                             Policy</strong></label><textarea class="form-control"
                                                              id="recruitment_policy"
                                                              name="recruitment_policy"
-                                                             placeholder="A recruitment policy is a statement on how you hire. It outlines your company’s preferred hiring practices and promotes consistency within your employee recruiting process.">
+                                                             placeholder="{{user.company.recruitment_policy}}" readonly>
                                                                                          {{ user.company.recruitment_policy }}</textarea>
                           </div>
                         </div>
@@ -248,8 +248,8 @@
                             Details</strong></label><textarea class="form-control"
                                                               id="other_details"
                                                               name="other_details"
-                                                              placeholder="{{ user.company.recruitment_policy }}"
-                                                              readonly>{{ user.company.recruitment_policy }}</textarea>
+                                                              placeholder="{{ user.company.other_details }}"
+                                                              readonly>{{ user.company.other_details }}</textarea>
                           </div>
                         </div>
                       </div>
