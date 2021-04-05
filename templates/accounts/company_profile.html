@@ -185,7 +185,7 @@
                                 placeholder="{{ user.name }}" name="name"
                                 value="{{ user.name }}" readonly></div>
                         </div>
-                        {% if viewer.user_type == 'ADMIN' %}
+                        {% if not user.company.verified and viewer.user_type == 'ADMIN' %}
                           <div class="col">
                             <div class="mb-3"></div>
                             <div class="form-check"><input class="form-check-input"
