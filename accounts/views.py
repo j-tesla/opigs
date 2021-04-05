@@ -64,9 +64,10 @@ def profile(request, pk=None):
         pk = request.user.id
         edit = True
         if request.method == 'POST':
-            if pk != request.user.id and request.user.user_type:
+            if pk != request.user.id and request.user.user_type == 'ADMIN':
+                print('verified')
                 user = User.objects.get(id=pk)
-                user.company.verified = request.POST['verified']
+                user.company.verified = True
                 user.company.save()
                 return redirect(request, 'profile', pk)
             user = User.objects.get(id=pk)
