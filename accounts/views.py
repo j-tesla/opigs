@@ -78,7 +78,7 @@ def profile(request, pk=None):
                     student.resume = request.FILES['resume']
 
                 student.save()
-            
+
             if user.user_type == 'COMPANY':
                 company = Company.objects.get(user=user.id)
                 company.email = request.POST['email']
@@ -96,10 +96,10 @@ def profile(request, pk=None):
     else:
         edit = False
         if request.method == 'POST':
-            if pk != request.user.id and request.user.user_type=="ADMIN":
+            if pk != request.user.id and request.user.user_type == "ADMIN":
                 print('verified')
                 user = User.objects.get(id=pk)
-                user.company.verified = True
+                user.company.verified = request.POST['verified']
                 user.company.save()
                 return redirect('profile', pk)
     user = User.objects.get(id=pk)

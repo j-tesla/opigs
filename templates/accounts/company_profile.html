@@ -2,7 +2,6 @@
 {% block content %}
   <div id="content">
     <div class="container-fluid">
-      {{ viewer.user_type }}
       <h3 class="text-dark mb-4">Profile</h3>
       <div class="row mb-3">
         <div class="col-lg-8">
@@ -236,8 +235,8 @@
                             Policy</strong></label><textarea class="form-control"
                                                              id="recruitment_policy"
                                                              name="recruitment_policy"
-                                                             placeholder="A recruitment policy is a statement on how you hire. It outlines your company’s preferred hiring practices and promotes consistency within your employee recruiting process.">
-                                                                                         {{ user.company.recruitment_policy }}</textarea>
+                                                             placeholder="{{ user.company.recruitment_policy }}"
+                                                             readonly>{{ user.company.recruitment_policy }}</textarea>
                           </div>
                         </div>
                       </div>
