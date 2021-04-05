@@ -27,7 +27,7 @@
             {% endfor %}
           </ul>
           {% if user.user_type == 'ADMIN' %}
-            <div class="form-group">
+            <div class="form-group mb-3">
               <a class="btn btn-info" href="{% url 'post_announcement' %}">New</a>
             </div>
           {% endif %}
