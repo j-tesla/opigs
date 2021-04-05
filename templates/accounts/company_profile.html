@@ -50,26 +50,139 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="mb-3"><label class="form-label"
-                                                                             for="username"><strong>Username</strong></label><input
-                                                            class="form-control" type="text" id="username"
-                                                            placeholder="user.name" name="username" readonly></div>
+                                                                             for="username"><strong>Username</strong></label>
+                                                        <input
+                                                                class="form-control" type="text" id="username"
+                                                                placeholder="{{ user.username }}" name="username"
+                                                                readonly>
+                                                    </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="mb-3"><label class="form-label" for="email"><strong>Email
-                                                        Address</strong></label><input class="form-control"
-                                                                                        type="email"
-                                                                                        id="email"
-                                                                                        placeholder="user@example.com"
-                                                                                        name="email"
-                                                                                        value="{{ user.company.email }}"></div>
+                                                        Address</strong></label>
+                                                        <input class="form-control"
+                                                               type="email"
+                                                               id="email"
+                                                               placeholder="user@example.com"
+                                                               name="email"
+                                                               value="{{ user.company.email }}">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="mb-3"><label class="form-label"
-                                                                             for="name"><strong>Name</strong></label><input
-                                                            class="form-control" type="text" id="name"
-                                                            placeholder="Software Co." name="name" value="{{ user.name }}"></div>
+                                                                             for="name"><strong>Name</strong></label>
+                                                        <input
+                                                                class="form-control" type="text" id="name"
+                                                                placeholder="Software Co." name="name"
+                                                                value="{{ user.name }}"></div>
+                                                </div>
+                                                {% if user.verified %}
+                                                    <div class="col">
+                                                        <div class="mb-3" style="text-align: center;padding: 15px;">
+                                                            <i
+                                                                    class="fas fa-check-circle"
+                                                                    data-bss-hover-animate="flash"
+                                                                    style="color: var(--bs-green);"></i><span>Verified</span>
+                                                        </div>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="col">
+                                                        <div class="mb-3" style="text-align: center;padding: 15px;">
+                                                            <i
+                                                                    class="fas fa-times-circle"
+                                                                    data-bss-hover-animate="flash"
+                                                                    style="color: var(--bs-warning);"></i><span>Unverified</span>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label"
+                                                                             for="work_environment"><strong>Work
+                                                        Environment</strong></label><textarea class="form-control"
+                                                                                              id="work_environment"
+                                                                                              name="work_environment"
+                                                                                              placeholder="The term “work environment” refers to a culmination of many different factors and elements that together characterize your work conditions. Elements that make up your work environment include:">{{ user.company.work_environment }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label"
+                                                                             for="recruitment_policy"><strong>Recruitment
+                                                        Policy</strong></label><textarea class="form-control"
+                                                                                         id="recruitment_policy"
+                                                                                         name="recruitment_policy"
+                                                                                         placeholder="A recruitment policy is a statement on how you hire. It outlines your company’s preferred hiring practices and promotes consistency within your employee recruiting process."
+                                                    >{{ user.company.recruitment_policy }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label"
+                                                                             for="other_details"><strong>Other
+                                                        Details</strong></label><textarea class="form-control"
+                                                                                          id="other_details"
+                                                                                          name="other_details"
+                                                                                          placeholder="A recruitment policy is a statement on how you hire. It outlines your company’s preferred hiring practices and promotes consistency within your employee recruiting process.">{{ user.company.other_details }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <button class="btn btn-primary btn-sm" data-bss-hover-animate="pulse"
+                                                        type="submit">Save Settings
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="row">
+                            <div class="col">
+                                <div class="card shadow mb-3">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 fw-bold">User Settings</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="{% url 'my_profile' %}" method="POST">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label"
+                                                                             for="username"><strong>Username</strong></label>
+                                                        <input
+                                                                class="form-control" type="text" id="username"
+                                                                placeholder="{{ user.username }}" name="username"
+                                                                readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label" for="email"><strong>Email
+                                                        Address</strong></label>
+                                                        <input class="form-control"
+                                                               type="email"
+                                                               id="email"
+                                                               placeholder="{{ user.company.email }}"
+                                                               name="email"
+                                                               value="{{ user.company.email }}"
+                                                               readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label"
+                                                                             for="name"><strong>Name</strong></label>
+                                                        <input
+                                                                class="form-control" type="text" id="name"
+                                                                placeholder="{{ user.name }}" name="name"
+                                                                value="{{ user.name }}" readonly></div>
                                                 </div>
                                                 {% if user.company.verified %}
                                                     <div class="col">
@@ -97,9 +210,9 @@
                                                                              for="work_environment"><strong>Work
                                                         Environment</strong></label><textarea class="form-control"
                                                                                               id="work_environment"
-                                                                                              name="work_environment"
-                                                                                              placeholder="The term “work environment” refers to a culmination of many different factors and elements that together characterize your work conditions. Elements that make up your work environment include:">
-                                                                                            {{ user.company.work_environment }}</textarea>
+                                                                                              name="work_environment"                                                                                        
+                                                                                              placeholder="{{ user.company.work_environment }}"
+                                                                                              readonly>{{ user.company.work_environment }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,10 +233,10 @@
                                                     <div class="mb-3"><label class="form-label"
                                                                              for="recruitment_policy"><strong>Other
                                                         Details</strong></label><textarea class="form-control"
-                                                                                        id="other_details"
-                                                                                        name="other_details"
-                                                                                        placeholder="A recruitment policy is a statement on how you hire. It outlines your company’s preferred hiring practices and promotes consistency within your employee recruiting process.">
-                                                                                        {{ user.company.other_details }}</textarea>
+                                                                                          id="other_details"
+                                                                                          name="other_details"
+                                                                                          placeholder="{{ user.company.recruitment_policy }}"
+                                                                                          readonly>{{ user.company.recruitment_policy }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
