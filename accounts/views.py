@@ -111,7 +111,7 @@ def profile(request, pk=None):
     elif user.user_type == "ALUMNI":
         return render(request, "accounts/alumni_profile.html", context=context)
     elif user.user_type == 'ADMIN':
-        return render(request, 'accounts/companies.html', context=context)
+        return redirect("companies")
     else:
         return HttpResponseNotFound()
 
