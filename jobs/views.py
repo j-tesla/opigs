@@ -33,6 +33,12 @@ def post_job(request):
                 content=f"New Job Posting: {job.title} at {job.company.name}",
                 url=f"/jobs/{job.id}"
                 )
+            notification.save()
+            
+            for student in Student.objects.all():
+                notification.users.add(student)
+            notification.save()
+
             return redirect('jobs')
     context = {'form': form }
 
