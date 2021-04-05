@@ -5,76 +5,83 @@
     <div class="container-fluid">
       <h3 class="text-dark mb-4" style="margin-top: 10px;">{{ job }}</h3>
 
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            Employment type
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              Employment type
+            </div>
+            <div class="col">
+              {{ job.job_type }}
+            </div>
           </div>
-          <div class="col">
-            {{ job.job_type }}
+          <div class="row">
+            <div class="col">
+              Industry
+            </div>
+            <div class="col">
+              {{ job.industry }}
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            Industry
+          <div class="row">
+            <div class="col">
+              Date Posted
+            </div>
+            <div class="col">
+              {{ job.date_posted }}
+            </div>
           </div>
-          <div class="col">
-            {{ job.industry }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            Date Posted
-          </div>
-          <div class="col">
-            {{ job.date_posted }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            Deadline
-          </div>
-          <div class="col">
-            {{ job.deadline_date }}
+          <div class="row">
+            <div class="col">
+              Deadline
+            </div>
+            <div class="col">
+              {{ job.deadline_date }}
+            </div>
           </div>
         </div>
       </div>
-      <div class="container">
-        <p class="h3">Job Description</p>
-        <p>
-          {{ job.description }}
-        </p>
+      <div class="card">
+        <div class="card-body">
+          <p class="h3">Job Description</p>
+          <p>
+            {{ job.description }}
+          </p>
+        </div>
       </div>
-      <div class="container">
+      <div class="card">
+        <div class="card-body"></div>
         <p class="h3">Skills Required</p>
         <p>
           {{ job.skills }}
         </p>
       </div>
-
-
-      {% if user.user_type == 'STUDENT' %}
-        <div class="container">
-          <form action="{% url 'apply_to_job' job.id %}" method="POST">
-            {% csrf_token %}
-            <div class="mb3">
-              <input type="submit" value="Apply" class="btn btn-success">
-            </div>
-          </form>
-        </div>
-      {% elif job.company.user.id == user.id %}
-        <div class="container">
-          <form action="{% url 'update_job' job.id %}" method="post">
-            {% csrf_token %}
-            <input type="submit" class="btn-sm btn-primary" value="Update">
-          </form>
-          <button class="btn-sm btn-danger" data-bs-toggle="modal"
-                  data-bs-target="#deleteModal{{ job.id }}">Delete
-          </button>
-        </div>
-        {% include "jobs/modal.html" %}
-      {% endif %}
-
     </div>
+  </div>
+
+
+  {% if user.user_type == 'STUDENT' %}
+    <div class="container-fluid">
+      <form action="{% url 'apply_to_job' job.id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb3">
+          <input type="submit" value="Apply" class="btn btn-success">
+        </div>
+      </form>
+    </div>
+  {% elif job.company.user.id == user.id %}
+    <div class="container">
+      <form action="{% url 'update_job' job.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn-sm btn-primary" value="Update">
+      </form>
+      <button class="btn-sm btn-danger" data-bs-toggle="modal"
+              data-bs-target="#deleteModal{{ job.id }}">Delete
+      </button>
+    </div>
+    {% include "jobs/modal.html" %}
+  {% endif %}
+
+  </div>
   </div>
 {% endblock %}
