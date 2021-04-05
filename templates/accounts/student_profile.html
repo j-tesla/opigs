@@ -60,10 +60,9 @@
                                                 <div class="mb-3"><label class="form-label"
                                                                          for="date_of_birth"><strong>Date of
                                                     birth</strong></label><input class="form-control"
-                                                                                 id="date_of_birth"
-                                                                                 placeholder="mm/dd/yyyy"
-                                                                                 name="date_of_birth" type="date"
-                                                                                 value="{{ user.student.date_of_birth }}">
+                                                                                id="date_of_birth"
+                                                                                name="date_of_birth" type="date"
+                                                                                >
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +105,7 @@
                                                                     type="button">{{ user.department }}
                                                             </button> -->
                                                         <select class="form-select" name="department"
-                                                                id="department" value="2">
+                                                                id="department">
 
                                                             <option value="1"
                                                                     {% if user.student.department == '1' %}
@@ -222,4 +221,9 @@
         </div>
     </div>
 
+    <script>
+         
+        date_string = "{{ user.student.date_of_birth }}".replaceAll(".", "") + " UTC";
+        document.getElementById("date_of_birth").value = (new Date(date_string)).toISOString().split('T')[0];
+    </script>
 {% endblock %}

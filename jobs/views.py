@@ -89,7 +89,7 @@ def get_job(request, pk):
 def view_resume(request, pk):
     student = User.objects.get(id=pk).student
     filename = student.resume.name.split('/')[-1]
-    response = HttpResponse(student.resume, content_type='text/plain')
+    response = HttpResponse(student.resume, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
 
     return response
