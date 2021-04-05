@@ -1,11 +1,11 @@
 {% extends "main.html" %}
 
 {% block content %}
-<table>
-  <form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" name="Submit">
-  </form>
-</table>
+  <table>
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" name="Submit">
+    </form>
+  </table>
 {% endblock %}
