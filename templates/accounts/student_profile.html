@@ -97,14 +97,15 @@
                                                 <div class="col">
                                                     <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input
                                                             class="form-control" type="text" id="username"
-                                                            placeholder="user.name" name="username"></div>
+                                                            placeholder="user.name" name="username" value="{{ user.username }}"></div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="mb-3"><label class="form-label" for="email"><strong>Email
                                                         Address</strong></label><input class="form-control" type="email"
                                                                                        id="email"
                                                                                        placeholder="user@example.com"
-                                                                                       name="email"></div>
+                                                                                       name="email"
+                                                                                       value="{{ user.email }}"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -112,14 +113,14 @@
                                                     <div class="mb-3"><label class="form-label"
                                                                              for="name"><strong>Name</strong></label><input
                                                             class="form-control" type="text" id="name"
-                                                            placeholder="Subhash" name="name"></div>
+                                                            placeholder="Subhash" name="name" value="{{ user.name }}"></div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="mb-3"><label class="form-label" for="last_name"><strong>Phone
                                                         Number</strong><br></label><input class="form-control"
                                                                                           type="text" id="phone"
                                                                                           placeholder="XXXXXXXXXX"
-                                                                                          name="phone"></div>
+                                                                                          name="phone" value="{{ user.student.phone }}"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -127,14 +128,17 @@
                                                     <div class="mb-3"><label class="form-label"
                                                                              for="department"><strong>Department</strong></label>
                                                         <div class="dropdown" id="department">
-                                                            <button class="btn btn-primary dropdown-toggle"
+                                                            <!-- <button class="btn btn-primary dropdown-toggle"
                                                                     aria-expanded="false" data-bs-toggle="dropdown"
-                                                                    type="button">Dropdown
-                                                            </button>
-                                                            <div class="dropdown-menu"><a class="dropdown-item"
-                                                                                          href="#">First Item</a><a
-                                                                    class="dropdown-item" href="#">Second Item</a><a
-                                                                    class="dropdown-item" href="#">Third Item</a></div>
+                                                                    type="button">{{ user.department }}
+                                                            </button> -->
+                                                            <select class="form-select" name="department" value="{{ user.student.department }}">
+
+                                                                <div class="dropdown-menu">
+                                                                    <option class="dropdown-item" href="#">First Item</option>
+                                                                    <option class="dropdown-item" href="#">Second Item</option>
+                                                                    <option class="dropdown-item" href="#">Third Item</option></div>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
