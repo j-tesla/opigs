@@ -393,4 +393,10 @@
     </div>
   </div>
 
+  <script>
+
+    date_string = "{{ user.student.date_of_birth }}".replaceAll(".", "") + " UTC";
+    document.getElementById("date_of_birth").value = (new Date(date_string)).toISOString().split('T')[0];
+</script>
+
 {% endblock %}
