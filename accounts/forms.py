@@ -6,12 +6,12 @@ from .models import User, Student, Company, Admin, Alumni
 
 
 class StudentSignUpForm(UserCreationForm):
+    email = forms.EmailField(required=True)
     name = forms.CharField(max_length=200)
     date_of_birth = forms.DateField(required=True)
     phone = forms.CharField(max_length=15)
     department = forms.ChoiceField(choices=Student.DEPARTMENTS)
     resume = forms.FileField()
-
     class Meta(UserCreationForm.Meta):
         model = User
 
@@ -24,17 +24,18 @@ class StudentSignUpForm(UserCreationForm):
         Student.objects.create(user=user, date_of_birth=self.cleaned_data.get('date_of_birth'),
                                phone=self.cleaned_data.get('phone'),
                                department=self.cleaned_data.get('department'),
-                               resume=self.cleaned_data.get('resume')
+                               resume=self.cleaned_data.get('resume'),
+                               email=self.cleaned_data.get('email')
                                )
         return user
 
 
 class CompanySignUpForm(UserCreationForm):
+    email = forms.EmailField(required=True)
     name = forms.CharField(max_length=200)
     work_environment = forms.CharField(widget=forms.Textarea)
     recruitment_policy = forms.CharField(widget=forms.Textarea)
     other_details = forms.CharField(widget=forms.Textarea)
-
     class Meta(UserCreationForm.Meta):
         model = User
 
@@ -46,7 +47,7 @@ class CompanySignUpForm(UserCreationForm):
         user.save()
         Company.objects.create(user=user, work_environment=self.cleaned_data.get('work_environment'),
                                recruitment_policy=self.cleaned_data.get('recruitment_policy'),
-                               other_details=self.cleaned_data.get('other_details'))
+                               other_details=self.cleaned_data.get('other_details'), email=self.cleaned_data.get('email'))
         return user
 
 

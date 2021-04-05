@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import JobPosting
 from .forms import JobPostingForm
 from accounts.decorators import verified_company_required, student_required
-from accounts.models import Company, Student
+from accounts.models import Company, Student, User
 from notifications.models import Notification
 
 
@@ -84,3 +84,13 @@ def get_job(request, pk):
     job = JobPosting.objects.get(id=pk)
     context = {'job': job, 'user': request.user}
     return render(request, 'jobs/job.html', context=context)
+
+@login_required
+def view_resume(request, pk):
+    student = User.objects.get(id=pk).student
+    filename = student.resume.name.split('/')[-1]
+    response = HttpResponse(student.resume, content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename=%s' % filename
+
+    return response
+
