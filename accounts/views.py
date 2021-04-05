@@ -64,13 +64,8 @@ def profile(request, pk=None):
         pk = request.user.id
         edit = True
         if request.method == 'POST':
-            if User.objects.filter(username=request.POST['username']).exists():
-                user = User.objects.get(username=request.POST['username'])
-                if user.id != request.user.id:
-                    pass  # fixme check for existing username or maybe we should not update username?
             user = User.objects.get(id=request.user.id)
             user.name = request.POST['name']
-            user.validate_unique()
             user.save()
             if user.user_type == 'STUDENT':
                 student = Student.objects.get(user=user.id)
