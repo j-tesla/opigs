@@ -64,12 +64,6 @@ def profile(request, pk=None):
         pk = request.user.id
         edit = True
         if request.method == 'POST':
-            if pk != request.user.id and request.user.user_type == 'ADMIN':
-                print('verified')
-                user = User.objects.get(id=pk)
-                user.company.verified = True
-                user.company.save()
-                return redirect(request, 'profile', pk)
             user = User.objects.get(id=pk)
             user.name = request.POST['name']
             user.save()
@@ -101,6 +95,13 @@ def profile(request, pk=None):
 
     else:
         edit = False
+        if request.method == 'POST':
+            if pk != request.user.id and request.user.user_type=="ADMIN":
+                print('verified')
+                user = User.objects.get(id=pk)
+                user.company.verified = True
+                user.company.save()
+                return redirect(request, 'profile', pk)
     user = User.objects.get(id=pk)
     context = {"user": user, "edit": edit, "viewer": request.user}
     if user.user_type == "STUDENT":
@@ -110,7 +111,7 @@ def profile(request, pk=None):
     elif user.user_type == "ALUMNI":
         return render(request, "accounts/alumni_profile.html", context=context)
     elif user.user_type == 'ADMIN':
-        return render(request, 'accounts/companies.html', context=context)
+        return redirect("companies")
     else:
         return HttpResponseNotFound()
 
@@ -126,7 +127,7 @@ def home(request):
 
 
 def get_companies(request):
-    companies = Company.objects.get()
+    companies = Company.objects.all()
     context = {'companies': companies}
 
     return render(request, 'accounts/companies.html', context=context)
