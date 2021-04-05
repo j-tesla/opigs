@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import StudentSignUpView, CompanySignUpView, AlumniSignUpView, profile, signup
+from .views import StudentSignUpView, CompanySignUpView, AlumniSignUpView, profile, signup, home
 from django.contrib.auth.views import LoginView
 from .forms import UserLoginForm
 
@@ -8,6 +8,7 @@ urlpatterns = [
         template_name="registration/login.html",
         authentication_form=UserLoginForm),
          name='login'),
+    print('', home, 'home'),
     path('', include('django.contrib.auth.urls'), name='django_auth'),
     path('profile/', profile, name='my_profile'),
     path('profile/<str:pk>', profile, name='profile'),
