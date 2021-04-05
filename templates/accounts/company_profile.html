@@ -184,6 +184,12 @@
                                                                 placeholder="{{ user.name }}" name="name"
                                                                 value="{{ user.name }}" readonly></div>
                                                 </div>
+                                            {% if user.user_type == 'ADMIN' %}
+                                                <div class="col">
+                                                        <div class="mb-3"></div>
+                                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="verified" value="{{ user.company.verified }}"><label class="form-check-label" for="verified">Verified</label></div>
+                                                    </div>
+                                                {% else %}
                                                 {% if user.company.verified %}
                                                     <div class="col">
                                                         <div class="mb-3" style="text-align: center;padding: 15px;">
@@ -203,6 +209,8 @@
                                                         </div>
                                                     </div>
                                                 {% endif %}
+
+                                                {% endif%}
                                             </div>
                                             <div class="row">
                                                 <div class="col">
