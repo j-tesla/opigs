@@ -1,27 +1,36 @@
-{% extends 'main.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-    <h1>Notice Board</h1>
-    <ul class="list-group">
-        {% for announcement in announcements %}
-            <li class="list-group-item">
+  <div id="content">
+    <div class="container-fluid">
+      <h3 class="text-dark mb-4" style="margin-top: 10px;">Notice Board</h3>
+      <div class="card shadow">
+        <div class="card-header py-3">
+          <ul class="list-group">
+            {% for announcement in announcements %}
+              <li class="list-group-item">
                 <details>
-                    <summary>{{ announcement }}</summary>
-                    <p class="text">
-                        {{ announcement.content }}
-                    </p>
-                    {% if user.user_type == 'ADMIN' %}
+                  <summary>{{ announcement }}</summary>
+                  <p class="text">
+                    {{ announcement.content }}
+                  </p>
+                  {% if user.user_type == 'ADMIN' %}
                     <a class="btn btn-sm btn-warning" href="{% url 'update_announcement' announcement.id %}">Update</a>
-                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete
+                    </button>
                     {% include "noticeboard/modal.html" %}
-                    {% endif %}
+                  {% endif %}
                 </details>
-            </li>
-        {% endfor %}
-    </ul>
-    {% if user.user_type == 'ADMIN' %}
-        <div class="form-group">
-        <a class="btn btn-info" href="{%  url 'post_announcement' %}">New</a>
+              </li>
+            {% endfor %}
+          </ul>
+          {% if user.user_type == 'ADMIN' %}
+            <div class="form-group">
+              <a class="btn btn-info" href="{% url 'post_announcement' %}">New</a>
+            </div>
+          {% endif %}
         </div>
-    {% endif %}
+      </div>
+    </div>
+  </div>
 {% endblock %}
