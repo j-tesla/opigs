@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import StudentSignUpView, CompanySignUpView, AlumniSignUpView, profile, signup, home
+from .views import StudentSignUpView, CompanySignUpView, AlumniSignUpView, profile, signup
 from django.contrib.auth.views import LoginView
 from .forms import UserLoginForm
 
