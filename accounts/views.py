@@ -64,12 +64,6 @@ def profile(request, pk=None):
         pk = request.user.id
         edit = True
         if request.method == 'POST':
-            if pk != request.user.id and request.user.user_type == 'ADMIN':
-                print('verified')
-                user = User.objects.get(id=pk)
-                user.company.verified = True
-                user.company.save()
-                return redirect(request, 'profile', pk)
             user = User.objects.get(id=pk)
             user.name = request.POST['name']
             user.save()
@@ -86,6 +80,13 @@ def profile(request, pk=None):
                 student.save()
     else:
         edit = False
+        if request.method == 'POST':
+            if pk != request.user.id and request.user.user_type=="ADMIN":
+                print('verified')
+                user = User.objects.get(id=pk)
+                user.company.verified = True
+                user.company.save()
+                return redirect(request, 'profile', pk)
     user = User.objects.get(id=pk)
     context = {"user": user, "edit": edit, "viewer": request.user}
     if user.user_type == "STUDENT":
