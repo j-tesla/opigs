@@ -5,7 +5,8 @@ from django.core.exceptions import ValidationError
 
 alphabetic = RegexValidator(r'^[a-zA-Z ]*$', 'Only alphanumeric characters are allowed.')
 
-def vaildate_fields(value):
+
+def validate_fields(value):
     print(value)
     if not value:
         raise ValidationError("This field cannot be empty!")
@@ -29,7 +30,7 @@ class User(AbstractUser):
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    email = models.EmailField(validators=[vaildate_fields],blank=False)
+    email = models.EmailField(validators=[validate_fields], blank=False)
     date_of_birth = models.DateField()
     phone = models.CharField(max_length=15)
     resume = models.FileField(upload_to='documents/')
