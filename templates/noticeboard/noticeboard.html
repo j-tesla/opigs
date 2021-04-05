@@ -22,6 +22,8 @@
                   {% endif %}
                 </details>
               </li>
+            {% empty %}
+              <p>Check back later!! No announcements</p>
             {% endfor %}
           </ul>
           {% if user.user_type == 'ADMIN' %}
