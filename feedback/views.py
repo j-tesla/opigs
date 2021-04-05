@@ -10,7 +10,7 @@ from .models import Feedback
 def get_feedback(request, pk):
     user = User.objects.get(id=pk)
     feedbacks = user.company.feedback_set.all()
-    context = {'feedbacks': feedbacks}
+    context = {'feedbacks': feedbacks, "company": user}
     return render(request, 'feedback.html', context=context)
 
 @login_required

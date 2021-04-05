@@ -74,8 +74,8 @@ def profile(request, pk=None):
                 student.phone = request.POST['phone']
                 student.date_of_birth = request.POST['date_of_birth']
 
-                if 'resume' in request.POST:
-                    student.resume = request.POST['resume']
+                if 'resume' in request.FILES.keys():
+                    student.resume = request.FILES['resume']
 
                 student.save()
     else:
