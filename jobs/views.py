@@ -85,6 +85,7 @@ def get_job(request, pk):
     context = {'job': job, 'user': request.user}
     return render(request, 'jobs/job.html', context=context)
 
+
 @login_required
 def view_resume(request, pk):
     student = User.objects.get(id=pk).student
@@ -93,4 +94,3 @@ def view_resume(request, pk):
     response['Content-Disposition'] = 'attachment; filename=%s' % filename
 
     return response
-

@@ -38,6 +38,7 @@ class CompanySignUpView(CreateView):
         login(self.request, user)
         admin = User.objects.filter(user_type="ADMIN")[0]
         notification = Notification(content='New Company: ' + user.name, url=f'/profile/{user.id}')
+        notification.save()
         notification.users.add(admin)
         return redirect('my_profile')
 
@@ -95,3 +96,8 @@ def profile(request, pk=None):
         return render(request, "accounts/alumni_profile.html", context=context)
     else:
         return HttpResponseNotFound()
+
+
+def signup(request):
+    context = {}
+    return render(request, 'accounts/signup_home.html', context=context)
