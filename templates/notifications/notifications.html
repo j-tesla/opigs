@@ -12,7 +12,7 @@
               <li class="list-group-item">
                 <form action="{% url 'delete_notification' notification.id %}" method="post">
                   {% csrf_token %}
-                  <a class="text" href="{{ notification.url }}">
+                  <a class="text" style="color:#000000; text-decoration: none;" href="{{ notification.url }}">
                     {{ notification.content }}
                   </a>
                   <!-- <input type="submit" value="delete"> -->
