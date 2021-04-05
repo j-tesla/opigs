@@ -64,7 +64,6 @@ def profile(request, pk=None):
         pk = request.user.id
         edit = True
         if request.method == 'POST':
-            print(request.POST)
             if User.objects.filter(username=request.POST['username']).exists():
                 user = User.objects.get(username=request.POST['username'])
                 if user.id != request.user.id:
@@ -87,7 +86,7 @@ def profile(request, pk=None):
     else:
         edit = False
     user = User.objects.get(id=pk)
-    context = {"user": user, "edit": edit}
+    context = {"user": user, "edit": edit, "viewer": request.user}
     if user.user_type == "STUDENT":
         return render(request, "accounts/student_profile.html", context=context)
     elif user.user_type == "COMPANY":
@@ -101,8 +100,3 @@ def profile(request, pk=None):
 def signup(request):
     context = {}
     return render(request, 'accounts/signup_home.html', context=context)
-
-
-def home(request):
-    context = {}
-    return render(request, 'home.html', context=context)
