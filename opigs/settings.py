@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'accounts',
     'jobs',
     'noticeboard',
-    'notifications'
+    'notifications',
+    'feedback'
 ]
 
 MIDDLEWARE = [

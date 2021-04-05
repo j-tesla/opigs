@@ -59,8 +59,7 @@ class AlumniSignUpForm(UserCreationForm):
     email = forms.EmailField(required=True)
     companies_worked_in = forms.ModelMultipleChoiceField(
         queryset=Company.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=True
+        widget=forms.CheckboxSelectMultiple
     )
 
     class Meta(UserCreationForm.Meta):
@@ -73,7 +72,7 @@ class AlumniSignUpForm(UserCreationForm):
         user.user_type = 'ALUMNI'
         user.save()
         alumni = Alumni.objects.create(user=user)
-        alumni.companies_worked_in.add(*self.cleaned_data.get('companies'))
+        alumni.companies_worked_in.add(*self.cleaned_data.get('companies_worked_in'))
         return user
 
 

@@ -38,6 +38,7 @@ class CompanySignUpView(CreateView):
         login(self.request, user)
         admin = User.objects.filter(user_type="ADMIN")[0]
         notification = Notification(content='New Company: ' + user.name, url=f'/profile/{user.id}')
+        notification.save()
         notification.users.add(admin)
         return redirect('my_profile')
 
@@ -63,13 +64,13 @@ def profile(request, pk=None):
         pk = request.user.id
         edit = True
         if request.method == 'POST':
+            print(request.POST)
             if User.objects.filter(username=request.POST['username']).exists():
                 user = User.objects.get(username=request.POST['username'])
                 if user.id != request.user.id:
                     pass  # fixme check for existing username or maybe we should not update username?
             user = User.objects.get(id=request.user.id)
             user.name = request.POST['name']
-            user.username = request.POST['username']
             user.validate_unique()
             user.save()
             if user.user_type == 'STUDENT':
@@ -77,7 +78,8 @@ def profile(request, pk=None):
                 student.email = request.POST['email']
                 student.department = request.POST['department']
                 student.phone = request.POST['phone']
-                student.email = request.POST['email']
+                student.date_of_birth = request.POST['date_of_birth']
+
                 if 'resume' in request.POST:
                     student.resume = request.POST['resume']
 
