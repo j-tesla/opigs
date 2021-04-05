@@ -15,6 +15,6 @@ urlpatterns = [
     path('signup/students/', StudentSignUpView.as_view(), name='students_signup'),
     path('signup/companies/', CompanySignUpView.as_view(), name='companies_signup'),
     path('signup/alumni/', AlumniSignUpView.as_view(), name='alumni_signup'),
-    path('companies/', get_companies, 'companies')
+    path('companies/', get_companies, name='companies')
 
 ]
