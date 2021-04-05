@@ -8,7 +8,7 @@ urlpatterns = [
         template_name="registration/login.html",
         authentication_form=UserLoginForm),
          name='login'),
-    print('', home, 'home'),
+    path('', home, name='home'),
     path('', include('django.contrib.auth.urls'), name='django_auth'),
     path('profile/', profile, name='my_profile'),
     path('profile/<str:pk>', profile, name='profile'),
