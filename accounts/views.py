@@ -21,7 +21,7 @@ class StudentSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('students:dashboard')
+        return redirect('my_profile')
 
 
 class CompanySignUpView(CreateView):
@@ -39,7 +39,7 @@ class CompanySignUpView(CreateView):
         admin = User.objects.filter(user_type="ADMIN")[0]
         notification = Notification(content='New Company: ' + user.name, url=f'/profile/{user.id}')
         notification.users.add(admin)
-        return redirect('companies:dashboard')
+        return redirect('my_profile')
 
 
 class AlumniSignUpView(CreateView):
@@ -54,7 +54,7 @@ class AlumniSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('profile')
+        return redirect('my_profile')
 
 
 @login_required
@@ -66,7 +66,7 @@ def profile(request, pk=None):
             if User.objects.filter(username=request.POST['username']).exists():
                 user = User.objects.get(username=request.POST['username'])
                 if user.id != request.user.id:
-                    pass        # fixme check for existing username or maybe we should not update username?
+                    pass  # fixme check for existing username or maybe we should not update username?
             user = User.objects.get(id=request.user.id)
             user.name = request.POST['name']
             user.username = request.POST['username']

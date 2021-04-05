@@ -1,205 +1,142 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Profile - Brand</title>
-    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome5-overrides.min.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-</head>
-
-<body id="page-top">
-<div id="wrapper">
-    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
-        <div class="container-fluid d-flex flex-column p-0"><a
-                class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-            <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-school tada animated"></i></div>
-            <div class="sidebar-brand-text mx-3"><span>OPIGS</span></div>
-        </a>
-            <hr class="sidebar-divider my-0">
-            <ul class="navbar-nav text-light" id="accordionSidebar">
-                {% if user.is_active %}
-                    <li class="nav-item"><a class="nav-link active" href="{% url 'my_profile' %}"><i
-                            class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'announcements' %}"><i
-                            class="fa fa-bullhorn"></i><span>Announcements</span></a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'notifications' %}"><i
-                            class="fa fa-bell fas fa-be"></i><span>Notifications</span></a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'jobs' %}"><i
-                            class="far fa-list-alt fas fa-be"></i><span>Job Postings</span></a></li>
-
-                {% endif %}
-                {% if not user.is_active %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="far fa-user-circle"></i><span>Sign in</span></a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'students_signup' %}"><i
-                            class="fas fa-user-circle"></i><span>Register</span></a>
-                    </li>
-                {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i
-                            class="fas fa-user-circle"></i><span>Sign out</span></a>
-                    </li>
-                {% endif %}
-            </ul>
-            <div class="text-center d-none d-md-inline"></div>
-        </div>
-    </nav>
-    <div class="d-flex flex-column" id="content-wrapper">
-        <div id="content">
-            <div class="container-fluid">
-                <h3 class="text-dark mb-4">Profile</h3>
-                <div class="row mb-3">
-                    <div class="col-lg-8">
-                        <div class="row mb-3 d-none">
-                            <div class="col">
-                                <div class="card textwhite bg-primary text-white shadow">
-                                    <div class="card-body">
-                                        <div class="row mb-2">
-                                            <div class="col">
-                                                <p class="m-0">Peformance</p>
-                                                <p class="m-0"><strong>65.2%</strong></p>
-                                            </div>
-                                            <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+{% extends 'base.html' %}
+{% block content %}
+    <div id="content">
+        <div class="container-fluid">
+            <h3 class="text-dark mb-4">Profile</h3>
+            <div class="row mb-3">
+                <div class="col-lg-8">
+                    <div class="row mb-3 d-none">
+                        <div class="col">
+                            <div class="card textwhite bg-primary text-white shadow">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <p class="m-0">Peformance</p>
+                                            <p class="m-0"><strong>65.2%</strong></p>
                                         </div>
-                                        <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since
-                                            last month</p>
+                                        <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
                                     </div>
+                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since
+                                        last month</p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="card textwhite bg-success text-white shadow">
-                                    <div class="card-body">
-                                        <div class="row mb-2">
-                                            <div class="col">
-                                                <p class="m-0">Peformance</p>
-                                                <p class="m-0"><strong>65.2%</strong></p>
-                                            </div>
-                                            <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                        </div>
+                        <div class="col">
+                            <div class="card textwhite bg-success text-white shadow">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <p class="m-0">Peformance</p>
+                                            <p class="m-0"><strong>65.2%</strong></p>
                                         </div>
-                                        <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since
-                                            last month</p>
+                                        <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                    </div>
+                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since
+                                        last month</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if edit %}
+                        <div class="row">
+                            <div class="col">
+                                <div class="card shadow mb-3">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 fw-bold">User Settings</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="{% url 'my_profile' %}" method="POST">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label"
+                                                                             for="username"><strong>Username</strong></label><input
+                                                            class="form-control" type="text" id="username"
+                                                            placeholder="user.name" name="username" readonly></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label" for="email"><strong>Email
+                                                        Address</strong></label><input class="form-control"
+                                                                                       type="email"
+                                                                                       id="email"
+                                                                                       placeholder="user@example.com"
+                                                                                       name="email"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label"
+                                                                             for="name"><strong>Name</strong></label><input
+                                                            class="form-control" type="text" id="name"
+                                                            placeholder="Software Co." name="name"></div>
+                                                </div>
+                                                {% if user.verified %}
+                                                    <div class="col">
+                                                        <div class="mb-3" style="text-align: center;padding: 15px;">
+                                                            <i
+                                                                    class="fas fa-check-circle"
+                                                                    data-bss-hover-animate="flash"
+                                                                    style="color: var(--bs-green);"></i><span>Verified</span>
+                                                        </div>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="col">
+                                                        <div class="mb-3" style="text-align: center;padding: 15px;">
+                                                            <i
+                                                                    class="fas fa-times-circle"
+                                                                    data-bss-hover-animate="flash"
+                                                                    style="color: var(--bs-warning);"></i><span>Unverified</span>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label"
+                                                                             for="work_environment"><strong>Work
+                                                        Environment</strong></label><textarea class="form-control"
+                                                                                              id="work_environment"
+                                                                                              name="work_environment"
+                                                                                              placeholder="The term “work environment” refers to a culmination of many different factors and elements that together characterize your work conditions. Elements that make up your work environment include:"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label"
+                                                                             for="recruitment_policy"><strong>Recruitment
+                                                        Policy</strong></label><textarea class="form-control"
+                                                                                         id="recruitment_policy"
+                                                                                         name="recruitment_policy"
+                                                                                         placeholder="A recruitment policy is a statement on how you hire. It outlines your company’s preferred hiring practices and promotes consistency within your employee recruiting process."></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="mb-3"><label class="form-label"
+                                                                             for="recruitment_policy"><strong>Other
+                                                        Details</strong></label><textarea class="form-control"
+                                                                                          id="recruitment_policy"
+                                                                                          name="recruitment_policy"
+                                                                                          placeholder="A recruitment policy is a statement on how you hire. It outlines your company’s preferred hiring practices and promotes consistency within your employee recruiting process."></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <button class="btn btn-primary btn-sm" data-bss-hover-animate="pulse"
+                                                        type="submit">Save Settings
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {% if edit %}
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card shadow mb-3">
-                                        <div class="card-header py-3">
-                                            <p class="text-primary m-0 fw-bold">User Settings</p>
-                                        </div>
-                                        <div class="card-body">
-                                            <form action="{% url 'my_profile' %}" method="POST">
-                                            {% csrf_token %}
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label"
-                                                                                 for="username"><strong>Username</strong></label><input
-                                                                class="form-control" type="text" id="username"
-                                                                placeholder="user.name" name="username"></div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="email"><strong>Email
-                                                            Address</strong></label><input class="form-control"
-                                                                                           type="email"
-                                                                                           id="email"
-                                                                                           placeholder="user@example.com"
-                                                                                           name="email"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label"
-                                                                                 for="name"><strong>Name</strong></label><input
-                                                                class="form-control" type="text" id="name"
-                                                                placeholder="Software Co." name="name"></div>
-                                                    </div>
-                                                    {% if user.verified %}
-                                                        <div class="col">
-                                                            <div class="mb-3" style="text-align: center;padding: 15px;">
-                                                                <i
-                                                                        class="fas fa-check-circle"
-                                                                        data-bss-hover-animate="flash"
-                                                                        style="color: var(--bs-green);"></i><span>Verified</span>
-                                                            </div>
-                                                        </div>
-                                                    {% else %}
-                                                        <div class="col">
-                                                            <div class="mb-3" style="text-align: center;padding: 15px;">
-                                                                <i
-                                                                        class="fas fa-times-circle"
-                                                                        data-bss-hover-animate="flash"
-                                                                        style="color: var(--bs-warning);"></i><span>Unverified</span>
-                                                            </div>
-                                                        </div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label"
-                                                                                 for="work_environment"><strong>Work
-                                                            Environment</strong></label><textarea class="form-control"
-                                                                                                  id="work_environment"
-                                                                                                  name="work_environment"
-                                                                                                  placeholder="The term “work environment” refers to a culmination of many different factors and elements that together characterize your work conditions. Elements that make up your work environment include:"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label"
-                                                                                 for="recruitment_policy"><strong>Recruitment
-                                                            Policy</strong></label><textarea class="form-control"
-                                                                                             id="recruitment_policy"
-                                                                                             name="recruitment_policy"
-                                                                                             placeholder="A recruitment policy is a statement on how you hire. It outlines your company’s preferred hiring practices and promotes consistency within your employee recruiting process."></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label"
-                                                                                 for="recruitment_policy"><strong>Other
-                                                            Details</strong></label><textarea class="form-control"
-                                                                                              id="recruitment_policy"
-                                                                                              name="recruitment_policy"
-                                                                                              placeholder="A recruitment policy is a statement on how you hire. It outlines your company’s preferred hiring practices and promotes consistency within your employee recruiting process."></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <button class="btn btn-primary btn-sm" data-bss-hover-animate="pulse" type="submit">Save Settings
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <footer class="bg-white sticky-footer">
-            <div class="container my-auto">
-                <div class="text-center my-auto copyright"><span>Copyright © CodeZeus 2021</span></div>
-            </div>
-        </footer>
     </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-<script src="{% static 'assets/js/script.min.js' %}"></script>
-</body>
 
-</html>
+{% endblock %}
