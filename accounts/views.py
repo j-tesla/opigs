@@ -64,7 +64,13 @@ def profile(request, pk=None):
         pk = request.user.id
         edit = True
         if request.method == 'POST':
-            user = User.objects.get(id=request.user.id)
+            if pk != request.user.id and request.user.user_type == 'ADMIN':
+                print('verified')
+                user = User.objects.get(id=pk)
+                user.company.verified = True
+                user.company.save()
+                return redirect(request, 'profile', pk)
+            user = User.objects.get(id=pk)
             user.name = request.POST['name']
             user.save()
             if user.user_type == 'STUDENT':
@@ -95,6 +101,7 @@ def profile(request, pk=None):
 def signup(request):
     context = {}
     return render(request, 'accounts/signup_home.html', context=context)
+
 
 def home(request):
     context = {}

@@ -16,7 +16,7 @@ def get_notifications(request):
 def delete_notification(request, pk):
     if request.method == 'POST':
         print(f"POST {pk}")
-        user = User.objects.get(id = request.user.id)
+        user = User.objects.get(id=request.user.id)
         notification = Notification.objects.get(id=pk)
         user.notification_set.remove(notification)
     return redirect('notifications')
@@ -25,6 +25,6 @@ def delete_notification(request, pk):
 @login_required
 def clear_notifications(request):
     if request.method == 'POST':
-        user = User.objects.get(id = request.user.id)
+        user = User.objects.get(id=request.user.id)
         user.notification_set.clear()
     return redirect('notifications')
