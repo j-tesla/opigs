@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import StudentSignUpView, CompanySignUpView, AlumniSignUpView, profile, signup
+from .views import StudentSignUpView, CompanySignUpView, AlumniSignUpView, profile, signup, get_companies
 from django.contrib.auth.views import LoginView
 from .forms import UserLoginForm
 
@@ -15,5 +15,6 @@ urlpatterns = [
     path('signup/students/', StudentSignUpView.as_view(), name='students_signup'),
     path('signup/companies/', CompanySignUpView.as_view(), name='companies_signup'),
     path('signup/alumni/', AlumniSignUpView.as_view(), name='alumni_signup'),
+    path('companies/', get_companies, 'companies')
 
 ]

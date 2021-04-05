@@ -74,10 +74,25 @@ def profile(request, pk=None):
                 student.phone = request.POST['phone']
                 student.date_of_birth = request.POST['date_of_birth']
 
-                if 'resume' in request.POST:
-                    student.resume = request.POST['resume']
+                if 'resume' in request.FILES.keys():
+                    student.resume = request.FILES['resume']
 
                 student.save()
+            
+            if user.user_type == 'COMPANY':
+                company = Company.objects.get(user=user.id)
+                company.email = request.POST['email']
+                company.work_environment = request.POST['work_environment']
+                company.recruitment_policy = request.POST['recruitment_policy']
+                company.other_details = request.POST['other_details']
+
+                company.save()
+
+            if user.user_type == "ALUMNI":
+                alumni = Alumni.objects.get(user=user.id)
+                alumni.email = request.POST["email"]
+                alumni.companies_worked_in = request.POST["companies_worked_in"]
+
     else:
         edit = False
         if request.method == 'POST':
@@ -95,6 +110,8 @@ def profile(request, pk=None):
         return render(request, "accounts/company_profile.html", context=context)
     elif user.user_type == "ALUMNI":
         return render(request, "accounts/alumni_profile.html", context=context)
+    elif user.user_type == 'ADMIN':
+        return render(request, 'accounts/companies.html', context=context)
     else:
         return HttpResponseNotFound()
 
@@ -107,3 +124,10 @@ def signup(request):
 def home(request):
     context = {}
     return render(request, 'home.html', context=context)
+
+
+def get_companies(request):
+    companies = Company.objects.get()
+    context = {'companies': companies}
+
+    return render(request, 'accounts/companies.html', context=context)
