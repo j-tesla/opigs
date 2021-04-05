@@ -30,13 +30,13 @@ def post_job(request):
             job.company = Company.objects.get(user__id=request.user.id)
             job.save()
             notification = Notification(
-                content=f"New Job Posting: {job.title} at {job.company.name}",
+                content=f"New Job Posting: {job.title} at {job.company.user.name}",
                 url=f"/jobs/{job.id}"
                 )
             notification.save()
             
             for student in Student.objects.all():
-                notification.users.add(student)
+                notification.users.add(student.user)
             notification.save()
 
             return redirect('jobs')

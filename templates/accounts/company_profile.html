@@ -259,15 +259,15 @@
                         </button>
                     </form>
                   </div>
-                  {% if user.user_type == 'ALUMNI' %}
+                  {% if viewer.user_type == 'ALUMNI' %}
                     <div class="card">
                       <div class="card-body">
                         <form action="{% url 'give_feedback' user.id %}" method="post">
                           {% csrf_token %}
                           <div class="mb-3">
                             <label class="form-label" for="feedback_content">
-                              <input class="form-control" type="text" name="feedback_content"
-                                     id="feedback_content"></label>
+                             <textarea name="feedback_content" id="feedback_content" class="form-control"></textarea>  
+                            </label>
                             <button class="btn btn-primary btn-sm" data-bss-hover-animate="pulse"
                                     type="submit">Give Feedback
                             </button>
