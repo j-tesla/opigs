@@ -14,3 +14,11 @@ For running the tests, run the following command:
 ```
 pytest
 ```
+
+Administration details:
+username: Institute
+password: InstituteAdmin
+
+Website is locally hosted at : 
+localhost:8000
+
