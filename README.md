@@ -1,6 +1,10 @@
 # Online Placement Information Gathering System
+(OPIGS)
+
+-----
+
 This is the term project for the course CS29006: Software Engineering Laboratory under Prof. Sourangshu Bhattacharya and Prof. Abir Das.  
-We have made an online portal to ease the placement process in colleges and universities. The website is dynamic and responsive and is a communication platform between the students, alumni, institute and the recruiters. The project name is Online Placement Information Gathering System (OPIGS). 
+We have made an online portal to ease the placement process in colleges and universities. The website is dynamic and responsive and is a communication platform between the students, alumni, institute and the recruiters.
 
 Requirements:   
 Django   
