@@ -31,7 +31,7 @@ def post_job(request):
             job.save()
             notification = Notification(
                 content=f"New Job Posting: {job.title} at {job.company.user.name}",
-                url=f"/jobs/{job.id}"
+                url=f"/jobs/job/{job.id}"
                 )
             notification.save()
             

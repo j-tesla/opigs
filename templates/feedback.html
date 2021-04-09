@@ -2,16 +2,14 @@
 
 {% block content %}
 
-<h2>{{ user.name }}</h2>
+<h2>{{ company.name }}</h2>
 
 {% for feedback in feedbacks %}
 
 <div class="card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">{{ feedback.alumni.user.name }}</h5>
+    <h5 class="card-title">{{ feedback.alumnus.user.name }}</h5>
     <p class="card-text">{{ feedback }}</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
   </div>
 </div>
 
