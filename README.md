@@ -21,13 +21,14 @@ For running the tests, run the following command:
 pytest
 ```
 
-Administration details:
-username: Institute
-password: InstituteAdmin
+#### Administration details:
+username: Institute  
+password: InstituteAdmin  
+  
+Website is locally hosted at `localhost:8000`  
 
-Website is locally hosted at `localhost:8000`
-
+#### Developers : 
 Roll no.s:
-19CS30006
-19CS30054
+19CS30006,
+19CS30054,
 19CS10068
