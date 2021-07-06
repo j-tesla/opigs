@@ -1,6 +1,8 @@
 # Online Placement Information Gathering System
 (OPIGS)
 
+[*slides*](https://docs.google.com/presentation/d/1ZJl_Pl8JTfmz4VCdeVhjzSVldkaE_oh68NKWwNUqsSk/edit#slide=id.gcee1ce4c65_0_13)
+
 -----
 
 This is the term project for the course CS29006: Software Engineering Laboratory under Prof. Sourangshu Bhattacharya and Prof. Abir Das.  
