@@ -1,7 +1,7 @@
 # Online Placement Information Gathering System
 (OPIGS)
 
-[*slides*](https://docs.google.com/presentation/d/1ZJl_Pl8JTfmz4VCdeVhjzSVldkaE_oh68NKWwNUqsSk/edit#slide=id.gcee1ce4c65_0_13)
+[*slides*][1]
 
 -----
 
@@ -34,3 +34,6 @@ Roll no.s:
 19CS30006,
 19CS30054,
 19CS10068
+
+
+[1]: https://docs.google.com/presentation/d/1ZJl_Pl8JTfmz4VCdeVhjzSVldkaE_oh68NKWwNUqsSk/edit?usp=sharing
